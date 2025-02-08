@@ -10,14 +10,21 @@ import {
   provideIonicAngular,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { addCircleOutline, notificationsCircle } from 'ionicons/icons';
+import {
+  addCircleOutline,
+  bodyOutline,
+  notifications,
+  trophyOutline,
+} from 'ionicons/icons';
 
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 
 addIcons({
-  'notifications-circle': notificationsCircle,
   'add-circle-outline': addCircleOutline,
+  'body-outline': bodyOutline,
+  'trophy-outline': trophyOutline,
+  notifications: notifications,
 });
 
 bootstrapApplication(AppComponent, {

@@ -9,9 +9,9 @@ import {
   IonButtons,
   IonIcon,
 } from '@ionic/angular/standalone';
-import { CardComponent } from "../../components/card/card.component";
-import { UserHeaderComponent } from "../../components/user/user-header/user-header.component";
-import { AddCardComponent } from "../../components/add-card/add-card.component";
+import { CardComponent } from '@components/card/card.component';
+import { UserHeaderComponent } from '@components/user/user-header/user-header.component';
+import { AddCardComponent } from '@components/add-card/add-card.component';
 
 @Component({
   selector: 'app-home',
@@ -28,9 +28,39 @@ import { AddCardComponent } from "../../components/add-card/add-card.component";
     IonIcon,
     CardComponent,
     UserHeaderComponent,
-    AddCardComponent
-],
+    AddCardComponent,
+  ],
 })
 export class HomePage {
   constructor() {}
+
+  getMyExercises() {
+    return [
+      {
+        highlightText: '',
+        mainText: 'PERSONAL YOGA',
+        imagePath: 'assets/jpg/exercise_4.jpg',
+      },
+      {
+        highlightText: '',
+        mainText: 'PERSONAL GINASTICA RITMICA',
+        imagePath: 'assets/jpg/exercise_5.jpg',
+      },
+    ];
+  }
+
+  getProgramExercises() {
+    return [
+      {
+        highlightText: 'continuar treinando',
+        mainText: 'LEVANTAMENTO DE PESO',
+        imagePath: 'assets/jpg/exercise_3.jpg',
+      },
+      {
+        highlightText: '',
+        mainText: 'YOGA EXPRESS',
+        imagePath: 'assets/jpg/exercise_4.jpg',
+      },
+    ];
+  }
 }

@@ -16,6 +16,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .username {
@@ -37,17 +38,23 @@
 }
 
 #user-action span {
-  width: 75%;
+  width: auto;
   margin-top: 10px;
   margin-bottom: 10px;
   display: flex;
-  text-align: center;
   background-color: #161616;
   border-radius: 30px 30px 30px 30px;
 }
 
 #user-action p {
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 200;
   color: $secondary-color;
+  margin: 12px;
+}
+
+@media screen and (min-width: 450px) and (max-width: 1920px) {
+  #user-info {
+    margin-left: 70px;
+  }
 }

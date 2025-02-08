@@ -19,7 +19,7 @@
   width: 100%;
   margin-left: 35px;
   overflow: hidden;
-  background: #111; /* Cor de fundo */
+  // background: $background-color;
 }
 
 .scroll-section h2 {
@@ -37,29 +37,18 @@ h2 ion-icon {
   color: $secondary-color;
 }
 
-.scroll-container {
-  display: flex;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  scroll-snap-type: x mandatory;
-  gap: 20px;
-  padding: 10px 20px;
-  scroll-behavior: smooth;
-}
-
-.scroll-container::-webkit-scrollbar {
-  display: none;
-}
-
 .card {
   position: relative;
-  min-width: 150px;
-  height: 120px;
+  width: 250px;
+  height: 150px;
   border-radius: 15px;
   overflow: hidden;
   flex-shrink: 0;
   scroll-snap-align: start;
+}
+
+.border-gray {
+  border: solid 1px #272727;
 }
 
 .card img {
@@ -79,20 +68,26 @@ h2 ion-icon {
 }
 
 .card-text {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
   color: white;
+  display: flex;
 
   &-column {
     @extend .card-text;
-    position: absolute;
-    transform: translate(-30%, -50%);
-    align-items: center;
-    font-weight: 400;
-    font-size: 14px;
-    top: 50%;
-    left: 50%;
-    display: flex;
     flex-direction: column;
   }
+}
+
+.highlight-text {
+  color: $secondary-color;
+  font-size: 12px;
+}
+
+.main-text {
+  font-size: 16px;
+  text-transform: uppercase;
 }
 
 .shadow-right {
@@ -106,7 +101,11 @@ h2 ion-icon {
 
 .shadow-right {
   right: 0;
-  background: linear-gradient(to left, black 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    to left,
+    $background-color 55%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 #program-exercise span {

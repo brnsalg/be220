@@ -8,11 +8,10 @@ import {
   IonMenuButton,
   IonButtons,
   IonIcon,
-  IonCard,
-  IonChip,
 } from '@ionic/angular/standalone';
 import { CardComponent } from "../../components/card/card.component";
 import { UserHeaderComponent } from "../../components/user/user-header/user-header.component";
+import { AddCardComponent } from "../../components/add-card/add-card.component";
 
 @Component({
   selector: 'app-home',
@@ -27,10 +26,9 @@ import { UserHeaderComponent } from "../../components/user/user-header/user-head
     IonMenuButton,
     IonButtons,
     IonIcon,
-    IonCard,
-    IonChip,
     CardComponent,
-    UserHeaderComponent
+    UserHeaderComponent,
+    AddCardComponent
 ],
 })
 export class HomePage {

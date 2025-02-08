@@ -2,5 +2,24 @@
 // http://ionicframework.com/docs/theming/
 $primary-color: #202020;
 $secondary-color: #f07d07;
-$rank-color: #6A36E8;
+$rank-color: #6a36e8;
 $action-color: #161616;
+$background-color: #090909;
+
+:root {
+  --ion-background-color: #{$background-color} !important;
+  --ion-text-color: #ffffff;
+}
+
+.ion-color-dark {
+  --ion-color-base: #{$background-color} !important;
+}
+
+.ion-color-light {
+  --ion-color-base: #ffffff;
+}
+
+body.dark {
+  --ion-background-color: #{$background-color} !important;
+  --ion-text-color: #e0e0e0;
+}

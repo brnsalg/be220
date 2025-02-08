@@ -1,0 +1,53 @@
+@import "../../../../theme/variables.scss";
+
+.user-section {
+  background: $primary-color;
+  border-radius: 0 0 50px 50px;
+}
+
+#user-info {
+  margin-left: 40px;
+  display: flex;
+  align-items: center;
+}
+
+#user-info img {
+  margin-right: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.username {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.rank {
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  color: #6a36e8;
+}
+
+#user-action {
+  display: flex;
+  justify-content: center;
+}
+
+#user-action span {
+  width: 75%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  text-align: center;
+  background-color: #161616;
+  border-radius: 30px 30px 30px 30px;
+}
+
+#user-action p {
+  font-size: 10px;
+  font-weight: 200;
+  color: $secondary-color;
+}

@@ -15,11 +15,11 @@
       </ion-buttons>
 
       <div class="toolbar-content">
-        <img src="assets/png/logo_3.png" alt="logo" class="logo" />
-        <ion-icon
-          name="notifications-circle"
-          class="icon-notification"
-        ></ion-icon>
+        <img src="assets/png/logo_5.png" alt="LOGO ACADEMIA" class="logo" />
+        <span>
+          <ion-icon name="notifications" class="icon-notification"></ion-icon>
+          <div class="notification-bubble"></div>
+        </span>
       </div>
     </ion-toolbar>
     <app-user-header />
@@ -31,10 +31,13 @@
         <h2>PERSONAL ONLINE <ion-icon name="add-circle-outline"></ion-icon></h2>
         <div class="scroll-section">
           <app-add-card />
+          @for (exerc of getMyExercises(); track $index) {
           <app-card
-            mainText="YOGA EXPRESS"
-            imagePath="assets/jpg/exercise_4.jpg"
+            highlightText="{{exerc.highlightText}}"
+            mainText="{{exerc.mainText}}"
+            imagePath="{{exerc.imagePath}}"
           />
+          }
           <div class="shadow-right"></div>
         </div>
       </div>
@@ -44,16 +47,13 @@
           PROGRAMAS<span class="pill"><p>NOVO</p></span>
         </h2>
         <div class="scroll-section">
+          @for (exerc of getProgramExercises(); track $index) {
           <app-card
-            highlightText="continuar treinando"
-            mainText="LEVANTAMENTO DE PESO"
-            imagePath="assets/jpg/exercise_3.jpg"
+            highlightText="{{exerc.highlightText}}"
+            mainText="{{exerc.mainText}}"
+            imagePath="{{exerc.imagePath}}"
           />
-          <app-card
-            mainText="YOGA EXPRESS"
-            imagePath="assets/jpg/exercise_4.jpg"
-          />
-
+          }
           <div class="shadow-right"></div>
         </div>
       </div>

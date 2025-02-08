@@ -1,24 +1,17 @@
-<div class="scroll-section">
-  <h2>PERSONAL ONLINE <ion-icon name="add-circle-outline"></ion-icon></h2>
+<div class="card pointer" [ngClass]="{ 'border-gray': !imagePath() }">
+  <div class="overlay"></div>
 
-  <div class="scroll-container">
-    <div class="card">
-      <div class="overlay"></div>
-      <img src="assets/jpg/exercise_3.jpg" alt="Treino 1" />
-      <ion-icon name="add-circle-outline" class="icon-add"></ion-icon>
-      <div class="card-text-column">
-        <span>NOVO</span>
-        <span>TREINO</span>
-      </div>
-    </div>
+  @if (imagePath()) {
+  <img [src]="imagePath()" alt="Imagem do Card" />
+  }
 
-    <div class="card">
-      <div class="overlay"></div>
-      <img src="assets/jpg/exercise_4.jpg" alt="Treino 3" />
-      <div class="">
-        <span>YOGA EXPERIMENTAL</span>
-      </div>
-    </div>
+  <div
+    [ngClass]="highlightText() && mainText() ? 'card-text-column' : 'card-text'"
+  >
+    @if (highlightText()) {
+    <span class="highlight-text">{{ highlightText() }}</span>
+    } @if (mainText()) {
+    <span class="main-text">{{ mainText() }}</span>
+    }
   </div>
-  <div class="shadow-right"></div>
 </div>

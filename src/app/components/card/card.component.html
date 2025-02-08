@@ -1,4 +1,4 @@
-<div class="card pointer" [ngClass]="{ 'border-gray': !imagePath() }">
+<div class="card" [ngClass]="{ 'border-gray': !imagePath() }">
   <div class="overlay"></div>
 
   @if (imagePath()) {
@@ -12,6 +12,8 @@
     <span class="highlight-text">{{ highlightText() }}</span>
     } @if (mainText()) {
     <span class="main-text">{{ mainText() }}</span>
+    } @if(!highlightText() && !mainText() && !imagePath()) {
+    <div class="orange-square"></div>
     }
   </div>
 </div>

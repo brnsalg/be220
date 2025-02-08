@@ -63,4 +63,19 @@ export class HomePage {
       },
     ];
   }
+
+  getContent() {
+    return [
+      {
+        highlightText: '',
+        mainText: '',
+        imagePath: '',
+      },
+      {
+        highlightText: '',
+        mainText: '',
+        imagePath: '',
+      },
+    ];
+  }
 }

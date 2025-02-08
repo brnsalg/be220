@@ -28,7 +28,10 @@
   <ion-content>
     <div id="exercises">
       <div id="exercise-section">
-        <h2>PERSONAL ONLINE <ion-icon name="add-circle-outline"></ion-icon></h2>
+        <h2>
+          PERSONAL ONLINE
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </h2>
         <div class="scroll-section">
           <app-add-card />
           @for (exerc of getMyExercises(); track $index) {
@@ -61,9 +64,13 @@
       <div id="bonus-section">
         <h2>CONTEÚDOS</h2>
         <div class="scroll-section">
-          <app-card />
-          <app-card />
-
+          @for (exerc of getContent(); track $index) {
+          <app-card
+            highlightText="{{exerc.highlightText}}"
+            mainText="{{exerc.mainText}}"
+            imagePath="{{exerc.imagePath}}"
+          />
+          }
           <div class="shadow-right"></div>
         </div>
       </div>

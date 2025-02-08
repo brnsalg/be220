@@ -33,13 +33,14 @@ h2 ion-icon {
 
 .card {
   position: relative;
-  width: 250px;
-  height: 150px;
+  width: 210px;
+  height: 110px;
   border-radius: 15px;
   overflow: hidden;
   flex-shrink: 0;
   scroll-snap-align: start;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -77,10 +78,11 @@ h2 ion-icon {
   left: 15px;
   color: white;
   display: flex;
-}
 
-.card-text-column {
-  flex-direction: column;
+  &-column {
+    @extend .card-text;
+    flex-direction: column;
+  }
 }
 
 .highlight-text {
@@ -115,9 +117,25 @@ h2 ion-icon {
   display: flex;
 }
 
+.orange-square {
+  margin-bottom: 30px;
+  margin-left: 12px;
+  background: $secondary-color;
+  border-radius: 12px;
+  width: 60px;
+  height: 60px;
+}
+
 ion-chip {
   margin-top: 15px;
   font-size: 6px;
   background: $secondary-color;
   height: 6px;
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    width: 250px;
+    height: 150px;
+  }
 }

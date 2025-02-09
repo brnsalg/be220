@@ -5,23 +5,32 @@ import {
   signInWithEmailAndPassword,
   signOut,
   User,
+  onAuthStateChanged,
 } from '@angular/fire/auth';
 import { Database, ref, set } from '@angular/fire/database';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor() {}
-
   private auth: Auth = inject(Auth);
   private db: Database = inject(Database);
+  public user: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(
+    null
+  );
 
-  async createUser(
-    email: string,
-    password: string,
-    displayName: string
-  ): Promise<User> {
+  constructor() {
+    onAuthStateChanged(this.auth, (user) => {
+      if (user) {
+        this.user.next(user);
+      } else {
+        this.user.next(null);
+      }
+    });
+  }
+
+  async createUser(email: string, password: string): Promise<User> {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         this.auth,
@@ -29,16 +38,13 @@ export class AuthService {
         password
       );
 
-      console.log(userCredential.user);
-      // await userCredential.user?.updateProfile({
-      //   displayName,
-      // });
+      await set(ref(this.db, 'users/' + userCredential.user?.uid), {
+        email,
+        createdAt: new Date().toISOString(),
+      });
 
-      // await set(ref(this.db, 'users/' + userCredential.user?.uid), {
-      //   email,
-      //   displayName,
-      //   createdAt: new Date().toISOString(),
-      // });
+      this.user.next(userCredential.user);
+
       return userCredential.user;
     } catch (error) {
       console.log(error);
@@ -53,6 +59,9 @@ export class AuthService {
         email,
         password
       );
+
+      this.user.next(userCredential.user);
+
       return userCredential.user;
     } catch (error) {
       console.log(error);
@@ -60,11 +69,12 @@ export class AuthService {
     }
   }
 
-  getCurrentUser() {
-    return this.auth.currentUser;
+  isUserLoggedIn(): boolean {
+    return this.user.getValue() !== null;
   }
 
   async logout(): Promise<void> {
     await signOut(this.auth);
+    this.user.next(null);
   }
 }

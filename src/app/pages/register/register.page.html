@@ -4,20 +4,13 @@
       <img src="assets/png/logo.png" alt="LOGO ACADEMIA" />
     </div>
 
+    <span class="title">CRIAR CONTA</span>
+
     <form
       [formGroup]="registerForm"
       (ngSubmit)="register()"
       class="register-form"
     >
-      <ion-input
-        label="Nome"
-        label-placement="floating"
-        fill="outline"
-        formControlName="name"
-        type="text"
-        placeholder="Nome"
-      ></ion-input>
-
       <ion-input
         label="Email"
         label-placement="floating"

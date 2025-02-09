@@ -16,6 +16,7 @@ import { AddCardComponent } from '@components/add-card/add-card.component';
 import { AuthService } from '@services/auth.service';
 import { Router } from '@angular/router';
 import { ToolboxService } from '@services/toolbox.service';
+import { User } from 'firebase/auth';
 
 @Component({
   selector: 'app-home',
@@ -37,11 +38,16 @@ import { ToolboxService } from '@services/toolbox.service';
   ],
 })
 export class HomePage {
+  user: User | null;
+
   constructor(
     private authService: AuthService,
     private router: Router,
     private toolboxService: ToolboxService
-  ) {}
+  ) {
+    this.user = this.authService.user.getValue();
+    console.log(this.user);
+  }
 
   getMyExercises() {
     return [

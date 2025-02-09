@@ -7,11 +7,14 @@ import {
   IonMenu,
   IonMenuButton,
   IonButtons,
+  IonButton,
   IonIcon,
 } from '@ionic/angular/standalone';
 import { CardComponent } from '@components/card/card.component';
 import { UserHeaderComponent } from '@components/user/user-header/user-header.component';
 import { AddCardComponent } from '@components/add-card/add-card.component';
+import { AuthService } from '@services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +28,7 @@ import { AddCardComponent } from '@components/add-card/add-card.component';
     IonMenu,
     IonMenuButton,
     IonButtons,
+    IonButton,
     IonIcon,
     CardComponent,
     UserHeaderComponent,
@@ -32,19 +36,19 @@ import { AddCardComponent } from '@components/add-card/add-card.component';
   ],
 })
 export class HomePage {
-  constructor() {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   getMyExercises() {
     return [
       {
         highlightText: '',
         mainText: 'PERSONAL YOGA',
-        imagePath: 'assets/jpg/exercise_4.jpg',
+        imagePath: 'assets/jpg/exercise_2.jpg',
       },
       {
         highlightText: '',
         mainText: 'PERSONAL GINASTICA RITMICA',
-        imagePath: 'assets/jpg/exercise_5.jpg',
+        imagePath: 'assets/jpg/exercise_3.jpg',
       },
     ];
   }
@@ -54,12 +58,12 @@ export class HomePage {
       {
         highlightText: 'continuar treinando',
         mainText: 'LEVANTAMENTO DE PESO',
-        imagePath: 'assets/jpg/exercise_3.jpg',
+        imagePath: 'assets/jpg/exercise_1.jpg',
       },
       {
         highlightText: '',
         mainText: 'YOGA EXPRESS',
-        imagePath: 'assets/jpg/exercise_4.jpg',
+        imagePath: 'assets/jpg/exercise_2.jpg',
       },
     ];
   }
@@ -77,5 +81,13 @@ export class HomePage {
         imagePath: '',
       },
     ];
+  }
+
+  logout(): void {
+    this.authService.logout().then(() => {
+      this.router.navigate(['/auth']);
+    }), () => {
+      //TODO MODAL ERROR
+    };
   }
 }

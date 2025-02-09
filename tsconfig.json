@@ -21,8 +21,11 @@
     "lib": ["es2018", "dom"],
     "useDefineForClassFields": false,
     "paths": {
+      "@services/*": ["src/app/services/*"],
       "@components/*": ["src/app/components/*"],
-      "@pages/*": ["src/app/pages/*"]
+      "@pages/*": ["src/app/pages/*"],
+      "@themes/*": ["src/theme/*"],
+      "@auths/*": ["src/auth/*"]
     }
   },
   "angularCompilerOptions": {

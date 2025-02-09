@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormsModule,
@@ -8,8 +8,14 @@ import {
   FormControl,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonContent, IonInput, IonButton } from '@ionic/angular/standalone';
+import {
+  IonContent,
+  IonInput,
+  IonButton,
+  IonSpinner,
+} from '@ionic/angular/standalone';
 import { AuthService } from '@services/auth.service';
+import { ToolboxService } from '@services/toolbox.service';
 
 @Component({
   selector: 'app-auth',
@@ -17,21 +23,26 @@ import { AuthService } from '@services/auth.service';
   styleUrls: ['./auth.page.scss'],
   standalone: true,
   imports: [
+    IonSpinner,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     IonContent,
     IonInput,
     IonButton,
+    IonSpinner,
   ],
 })
-export class AuthPage {
+export class AuthPage implements OnInit, OnDestroy {
   loginForm: FormGroup;
+  isLoading: boolean;
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toolboxService: ToolboxService
   ) {
+    this.isLoading = false;
     this.loginForm = new FormGroup<{
       email: FormControl<string>;
       password: FormControl<string>;
@@ -47,22 +58,38 @@ export class AuthPage {
     });
   }
 
-  async login() {
+  ngOnInit() {
+    this.loginForm.reset();
+  }
+
+  ngOnDestroy() {
+    this.loginForm.reset();
+  }
+
+  async login(): Promise<void> {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
+      this.isLoading = true;
+
       try {
         await this.authService.login(email, password).then(
           () => {
             this.router.navigate(['/home']);
           },
           () => {
-            // TODO MODAL ERRO
-            // TODO ANIMACAO LOAD
+            this.toolboxService.alert(
+              'Erro no Login!',
+              'Houve um problema ao tentar fazer o login. Por favor, tente novamente mais tarde.'
+            );
           }
         );
       } catch (error) {
-        console.log(error);
+        // console.log(error);
+      } finally {
+        this.isLoading = false;
       }
+
+      this.loginForm.reset();
     }
   }
 

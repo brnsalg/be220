@@ -1,4 +1,4 @@
-@import "../../../../src/theme/variables.scss";
+@import "@themes/variables.scss";
 
 ion-toolbar {
   --background: #202020;
@@ -6,7 +6,7 @@ ion-toolbar {
 
 .logo {
   height: 70px;
-  margin-left: 22%;
+  margin-left: 25%;
   margin-right: auto;
 }
 
@@ -115,6 +115,18 @@ ion-toolbar {
   height: 10px;
   border-radius: 50%;
   background-color: #7df0d3;
+}
+
+.ion-padding {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  &-logout {
+    @extend .button;
+    --background: #{$secondary-color};
+  }
 }
 
 @media screen and (min-width: 768px) {

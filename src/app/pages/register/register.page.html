@@ -1,0 +1,50 @@
+<ion-content class="register-container">
+  <div class="content-wrapper">
+    <div class="logo">
+      <img src="assets/png/logo.png" alt="LOGO ACADEMIA" />
+    </div>
+
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="register()"
+      class="register-form"
+    >
+      <ion-input
+        label="Nome"
+        label-placement="floating"
+        fill="outline"
+        formControlName="name"
+        type="text"
+        placeholder="Nome"
+      ></ion-input>
+
+      <ion-input
+        label="Email"
+        label-placement="floating"
+        fill="outline"
+        formControlName="email"
+        type="email"
+        placeholder="seu@email.com"
+      ></ion-input>
+
+      <ion-input
+        label="Senha"
+        label-placement="floating"
+        fill="outline"
+        formControlName="password"
+        type="password"
+        placeholder="Senha"
+      ></ion-input>
+
+      <ion-button
+        expand="full"
+        type="submit"
+        shape="round"
+        [disabled]="registerForm.invalid"
+        >Criar Conta</ion-button
+      >
+    </form>
+
+    <p class="login-text" (click)="goToLogin()">Já tem uma conta? Faça login</p>
+  </div>
+</ion-content>

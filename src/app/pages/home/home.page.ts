@@ -15,6 +15,7 @@ import { UserHeaderComponent } from '@components/user/user-header/user-header.co
 import { AddCardComponent } from '@components/add-card/add-card.component';
 import { AuthService } from '@services/auth.service';
 import { Router } from '@angular/router';
+import { ToolboxService } from '@services/toolbox.service';
 
 @Component({
   selector: 'app-home',
@@ -36,7 +37,11 @@ import { Router } from '@angular/router';
   ],
 })
 export class HomePage {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toolboxService: ToolboxService
+  ) {}
 
   getMyExercises() {
     return [
@@ -86,8 +91,12 @@ export class HomePage {
   logout(): void {
     this.authService.logout().then(() => {
       this.router.navigate(['/auth']);
-    }), () => {
-      //TODO MODAL ERROR
-    };
+    }),
+      () => {
+        this.toolboxService.alert(
+          'Erro no Logout!',
+          'Houve um problema ao tentar fazer o logout. Por favor, tente novamente mais tarde.'
+        );
+      };
   }
 }

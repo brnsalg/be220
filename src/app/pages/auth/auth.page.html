@@ -27,9 +27,12 @@
         expand="full"
         type="submit"
         shape="round"
-        [disabled]="loginForm.invalid"
+        [disabled]="loginForm.invalid || isLoading"
       >
-        Login
+        <ng-container *ngIf="!isLoading; else loading"> Login </ng-container>
+        <ng-template #loading>
+          <ion-spinner name="dots" color="light" size="small"></ion-spinner>
+        </ng-template>
       </ion-button>
     </form>
 

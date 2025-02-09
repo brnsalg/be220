@@ -40,9 +40,15 @@
         expand="full"
         type="submit"
         shape="round"
-        [disabled]="registerForm.invalid"
-        >Criar Conta</ion-button
+        [disabled]="registerForm.invalid || isLoading"
       >
+        <ng-container *ngIf="!isLoading; else loading">
+          Criar Conta
+        </ng-container>
+        <ng-template #loading>
+          <ion-spinner name="dots" color="light" size="small"></ion-spinner>
+        </ng-template>
+      </ion-button>
     </form>
 
     <p class="login-text" (click)="goToLogin()">Já tem uma conta? Faça login</p>

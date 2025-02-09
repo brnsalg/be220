@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormsModule,
@@ -8,8 +8,15 @@ import {
   FormControl,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonContent, IonInput, IonButton } from '@ionic/angular/standalone';
+import {
+  IonContent,
+  IonInput,
+  IonButton,
+  AlertController,
+  IonSpinner,
+} from '@ionic/angular/standalone';
 import { AuthService } from '@services/auth.service';
+import { ToolboxService } from '@services/toolbox.service';
 
 @Component({
   selector: 'app-register',
@@ -23,12 +30,18 @@ import { AuthService } from '@services/auth.service';
     IonContent,
     IonInput,
     IonButton,
+    IonSpinner,
   ],
 })
-export class RegisterPage {
+export class RegisterPage implements OnInit, OnDestroy {
   registerForm: FormGroup;
+  isLoading: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toolboxService: ToolboxService
+  ) {
     this.registerForm = new FormGroup<{
       name: FormControl<string>;
       email: FormControl<string>;
@@ -49,9 +62,18 @@ export class RegisterPage {
     });
   }
 
+  ngOnInit() {
+    this.registerForm.reset();
+  }
+
+  ngOnDestroy() {
+    this.registerForm.reset();
+  }
+
   async register(): Promise<void> {
     if (this.registerForm.valid) {
       const { name, email, password } = this.registerForm.getRawValue();
+      this.isLoading = true;
 
       try {
         await this.authService.createUser(email, password, name).then(
@@ -59,13 +81,19 @@ export class RegisterPage {
             this.router.navigate(['/auth']);
           },
           () => {
-            // TODO MODAL ERROR
-            // TODO ANIMACAO LOAD
+            this.toolboxService.alert(
+              'Erro no Cadastro!',
+              'Houve um problema ao tentar realizar o cadastro. Por favor, verifique os dados e tente novamente mais tarde.'
+            );
           }
         );
       } catch (error) {
-        console.log(error);
+        // console.log(error);
+      } finally {
+        this.isLoading = false;
       }
+
+      this.registerForm.reset();
     }
   }
 

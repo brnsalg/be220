@@ -22,10 +22,10 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { environment } from './environments/environment';
-import { provideAuth } from '@angular/fire/auth';
-import { provideDatabase } from '@angular/fire/database';
-import { getAuth } from 'firebase/auth';
-import { getDatabase } from 'firebase/database';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 addIcons({
   'add-circle-outline': addCircleOutline,
@@ -43,5 +43,7 @@ bootstrapApplication(AppComponent, {
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
+    provideStorage(() => getStorage()),
+    provideFirestore(() => getFirestore()),
   ],
 });

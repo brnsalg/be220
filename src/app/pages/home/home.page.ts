@@ -17,6 +17,7 @@ import { AuthService } from '@services/auth.service';
 import { Router } from '@angular/router';
 import { ToolboxService } from '@services/toolbox.service';
 import { User } from 'firebase/auth';
+import { UserService } from '@services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -43,10 +44,10 @@ export class HomePage {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private toolboxService: ToolboxService
+    private toolboxService: ToolboxService,
+    private userService: UserService
   ) {
-    this.user = this.authService.user.getValue();
-    console.log(this.user);
+    this.user = this.userService.getUser();
   }
 
   getMyExercises() {
@@ -98,7 +99,7 @@ export class HomePage {
     this.authService.logout().then(() => {
       this.router.navigate(['/auth']);
     }),
-      () => {
+      (): void => {
         this.toolboxService.alert(
           'Erro no Logout!',
           'Houve um problema ao tentar fazer o logout. Por favor, tente novamente mais tarde.'

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { IonIcon } from '@ionic/angular/standalone';
+import { UserService } from '@services/user.service';
 
 @Component({
   selector: 'app-user-header',
@@ -9,7 +10,14 @@ import { IonIcon } from '@ionic/angular/standalone';
   imports: [IonIcon],
 })
 export class UserHeaderComponent implements OnInit {
-  constructor() {}
+  username = input('');
+
+  constructor(private userService: UserService) {}
 
   ngOnInit() {}
+
+  // TODO implementar foto
+  // changeImage(): void {
+  //   this.userService.changeImage();
+  // }
 }

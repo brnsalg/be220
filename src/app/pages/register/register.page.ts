@@ -43,9 +43,14 @@ export class RegisterPage implements OnInit, OnDestroy {
     private toolboxService: ToolboxService
   ) {
     this.registerForm = new FormGroup<{
+      username: FormControl<string>;
       email: FormControl<string>;
       password: FormControl<string>;
     }>({
+      username: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(3)],
+      }),
       email: new FormControl('', {
         nonNullable: true,
         validators: [Validators.required, Validators.email],
@@ -67,11 +72,11 @@ export class RegisterPage implements OnInit, OnDestroy {
 
   async register(): Promise<void> {
     if (this.registerForm.valid) {
-      const { email, password } = this.registerForm.getRawValue();
+      const { email, password, username } = this.registerForm.getRawValue();
       this.isLoading = true;
 
       try {
-        await this.authService.createUser(email, password).then(
+        await this.authService.register(email, password, username).then(
           () => {
             this.router.navigate(['/home']);
           },

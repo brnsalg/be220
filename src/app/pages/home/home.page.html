@@ -1,7 +1,7 @@
 <ion-menu contentId="main-content">
   <ion-header class="ion-no-border">
     <ion-toolbar>
-      <ion-title>Olá, Leonardo Santos</ion-title>
+      <ion-title>Olá, {{user?.displayName}}</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding"
@@ -25,7 +25,9 @@
         </span>
       </div>
     </ion-toolbar>
-    <app-user-header />
+    <app-user-header
+      username="{{user?.displayName}}"
+    />
   </ion-header>
 
   <ion-content>

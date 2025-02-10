@@ -1,14 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import {
   Auth,
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  User,
-  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  UserCredential,
+  updateProfile,
 } from '@angular/fire/auth';
 import { Database, ref, set } from '@angular/fire/database';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,65 +15,51 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   private auth: Auth = inject(Auth);
   private db: Database = inject(Database);
-  public user: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(
-    null
-  );
 
-  constructor() {
-    onAuthStateChanged(this.auth, (user) => {
-      if (user) {
-        this.user.next(user);
-      } else {
-        this.user.next(null);
-      }
-    });
-  }
+  constructor() {}
 
-  async createUser(email: string, password: string): Promise<User> {
+  async register(
+    email: string,
+    password: string,
+    username: string
+  ): Promise<UserCredential> {
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        this.auth,
-        email,
-        password
-      );
+      const userCredential: UserCredential =
+        await createUserWithEmailAndPassword(this.auth, email, password);
+
+      updateProfile(userCredential.user, {
+        displayName: username,
+      }).then();
 
       await set(ref(this.db, 'users/' + userCredential.user?.uid), {
         email,
+        displayName: username,
         createdAt: new Date().toISOString(),
       });
 
-      this.user.next(userCredential.user);
-
-      return userCredential.user;
-    } catch (error) {
-      console.log(error);
-      throw error;
+      return userCredential;
+    } catch (e) {
+      // console.log(e);
+      throw e;
     }
   }
 
-  async login(email: string, password: string): Promise<User> {
+  async login(email: string, password: string): Promise<UserCredential> {
     try {
-      const userCredential = await signInWithEmailAndPassword(
+      const user: UserCredential = await signInWithEmailAndPassword(
         this.auth,
         email,
         password
       );
 
-      this.user.next(userCredential.user);
-
-      return userCredential.user;
-    } catch (error) {
-      console.log(error);
-      throw error;
+      return user;
+    } catch (e) {
+      // console.log(e);
+      throw e;
     }
   }
 
-  isUserLoggedIn(): boolean {
-    return this.user.getValue() !== null;
-  }
-
   async logout(): Promise<void> {
-    await signOut(this.auth);
-    this.user.next(null);
+    return await signOut(this.auth);
   }
 }

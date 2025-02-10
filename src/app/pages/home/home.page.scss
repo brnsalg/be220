@@ -36,7 +36,7 @@ ion-toolbar {
   right: 0;
   background: linear-gradient(
     to left,
-    $background-color 55%,
+    $background-color 65%,
     rgba(0, 0, 0, 0) 100%
   );
 }
@@ -133,9 +133,7 @@ ion-toolbar {
   .logo {
     margin-left: auto;
   }
-}
 
-@media screen and (min-width: 768px) {
   #exercise-section h2,
   #bonus-section h2 {
     font-size: 28px;

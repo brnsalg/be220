@@ -1,4 +1,4 @@
-# Teste Técnico Be220!
+# Teste Técnico Be220
 
 ### Como subir o APP?
 

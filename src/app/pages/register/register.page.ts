@@ -49,11 +49,7 @@ export class RegisterPage implements OnInit, OnDestroy {
     }>({
       username: new FormControl('', {
         nonNullable: true,
-        validators: [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(20),
-        ],
+        validators: [Validators.required, Validators.minLength(3)],
       }),
       email: new FormControl('', {
         nonNullable: true,

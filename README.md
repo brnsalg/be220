@@ -9,8 +9,8 @@
 
 ### Foi Utilizado:
 
-- **Frontend**: Ionic/Angular;
-- **Backend**: Firebase.
+- **Frontend**: Ionic/Angular
+- **Backend**: Firebase
 
 ### Funcionalidades:
 

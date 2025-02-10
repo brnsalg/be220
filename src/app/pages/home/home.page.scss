@@ -129,6 +129,17 @@ ion-toolbar {
   }
 }
 
+.shadow-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
+  pointer-events: none;
+  z-index: 5;
+  height: 30%;
+}
+
 @media screen and (min-width: 768px) {
   .logo {
     margin-left: auto;

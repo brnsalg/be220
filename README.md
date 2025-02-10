@@ -1,11 +1,18 @@
 # Teste Técnico Be220!
 
-### Foi Utilizado
+### Como subir o APP?
+
+- Baixe ou clone este repositório
+- Tenha _npm_ em seu ambiente
+- Rode: _npm install_
+- Rode: _npm start_
+
+### Foi Utilizado:
 
 - **Frontend**: Ionic/Angular;
 - **Backend**: Firebase.
 
-### Funcionalidades
+### Funcionalidades:
 
 O aplicativo oferece os seguintes destaques:
 
@@ -14,7 +21,7 @@ O aplicativo oferece os seguintes destaques:
 - Logout
 - Responsividade
 
-### Preview do App
+### Preview do App:
 
 - [be220.apk](demo/be220.apk)
 

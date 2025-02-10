@@ -21,9 +21,13 @@ O aplicativo oferece os seguintes destaques:
 ![Print da tela](screenshot/3.png)
 ![Print da tela](screenshot/4.png)
 
+- [be220.apk](demo/be220.apk)
+
 ### Secret!
 
 Não utilize as credencias de Bruce Wayne no APK da Wayne Tech!
 
 - Email: brucewayne@email.com
 - Senha: alfredcafe
+
+- [waynetech.apk](demo/waynetech.apk)
